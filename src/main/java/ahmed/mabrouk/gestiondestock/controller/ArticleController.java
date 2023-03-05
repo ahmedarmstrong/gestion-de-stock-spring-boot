@@ -10,7 +10,9 @@ import ahmed.mabrouk.gestiondestock.dto.LigneCommandeClientDto;
 import ahmed.mabrouk.gestiondestock.dto.LigneCommandeFournisseurDto;
 import ahmed.mabrouk.gestiondestock.dto.LigneVenteDto;
 import ahmed.mabrouk.gestiondestock.service.ArticleService;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class ArticleController implements ArticleApi {
 	
 	private ArticleService articleService;

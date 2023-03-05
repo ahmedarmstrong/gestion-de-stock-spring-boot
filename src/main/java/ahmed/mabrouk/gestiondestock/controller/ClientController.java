@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ahmed.mabrouk.gestiondestock.controller.api.ClientApi;
 import ahmed.mabrouk.gestiondestock.dto.ClientDto;
 import ahmed.mabrouk.gestiondestock.service.ClientService;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class ClientController implements ClientApi {
 	
 	private ClientService clientService;

@@ -1,8 +1,10 @@
 package ahmed.mabrouk.gestiondestock.service.implement;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,7 @@ import ahmed.mabrouk.gestiondestock.service.UtilisateurService;
 import ahmed.mabrouk.gestiondestock.validator.EntrepriseValidator;
 import lombok.extern.slf4j.Slf4j;
 
-
+@Transactional(rollbackOn = Exception.class)
 @Service
 @Slf4j
 public class EntrepriseServiceImpl implements EntrepriseService {
@@ -62,6 +64,22 @@ public class EntrepriseServiceImpl implements EntrepriseService {
 			    return  savedEntreprise;
 	}
 
+	private UtilisateurDto fromEntreprise(EntrepriseDto dto) {
+		return UtilisateurDto.builder()
+				.adresse(dto.getAdresse())
+				.nom(dto.getNom())
+				.prenom(dto.getCodeFiscale())
+				.email(dto.getEmail())
+				.moteDePasse(generateRandomPassword())
+				.entreprise(dto)
+				.dateDeNaissance(Instant.now())
+				.photo(dto.getPhoto())
+				.build();
+	}
+
+	private String generateRandomPassword() {
+		return "som3R@nd0mP@$$word";
+	}
 	@Override
 	public EntrepriseDto findById(Integer id) {
 		 if (id == null) {
